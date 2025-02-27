@@ -1,6 +1,51 @@
 @UserManagementApi_HostAddress = http://localhost:5098
+@token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6InRlc3R1c2VyIiwibmJmIjoxNzQwNjUxNTM5LCJleHAiOjE3NDA2NTUxMzksImlhdCI6MTc0MDY1MTUzOX0.DwsziSP6Oa37ybjiGwdzd3oi6L9SVoJWiqzolRCOrMI"
 
-GET {{UserManagementApi_HostAddress}}/weatherforecast/
-Accept: application/json
+### Generate Token
+POST {{UserManagementApi_HostAddress}}/generate-token
 
 ###
+
+### Get all users
+GET {{UserManagementApi_HostAddress}}/users
+Accept: application/json
+Authorization: Bearer {{token}}
+###
+
+### Get a specific user by ID
+GET {{UserManagementApi_HostAddress}}/users/1
+Accept: application/json
+Authorization: Bearer {{token}}
+###
+
+### Add a new user
+POST {{UserManagementApi_HostAddress}}/users
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "firstName": "John",
+  "lastName": "Doe",
+  "email": "john.doe@example.com",
+  "department": "HR"
+}
+
+###
+
+### Update an existing user
+PUT {{UserManagementApi_HostAddress}}/users/1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "firstName": "Jane",
+  "lastName": "Doe",
+  "email": "jane.doe@example.com",
+  "department": "IT"
+}
+
+###
+
+### Delete a user by ID
+DELETE {{UserManagementApi_HostAddress}}/users/1
+Authorization: Bearer {{token}}

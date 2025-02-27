@@ -1,1 +1,1 @@
-﻿using UserManagementApi.Models;
+﻿global using UserManagementApi.Models;
